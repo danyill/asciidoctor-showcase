@@ -1,5 +1,7 @@
 = Asciidoctor Showcase
 
+image::images/Asciidoctor-Showcase-ba06b.png[]
+
 == Where to find documentation
 
 == A suggested installation
@@ -20,8 +22,10 @@ sudo pip install actdiag blockdiag seqdiag nwdiag shaape
 
 sudo apt install ditaa graphviz
 
-npm install mermaid --save-dev
+sudo npm install -g mermaid --save-dev
+sudo npm install phantomjs
 
+Test
 
 
 [actdiag]
