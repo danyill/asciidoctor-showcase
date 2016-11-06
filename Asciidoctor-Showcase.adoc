@@ -1,4 +1,10 @@
 = Asciidoctor Showcase
+v1.0 Daniel Mulholland <dan.mulholland@gmail.com>
+:imagesoutdir: ./images_out
+:imagesdir: ./images
+:iconsdir: ./icons
+:stylesdir: ./styles
+:scriptsdir: ./js
 
 image::images/Asciidoctor-Showcase-ba06b.png[]
 
@@ -16,16 +22,61 @@ image::images/Asciidoctor-Showcase-ba06b.png[]
 
 Asciidoctor Diagram is a set of Asciidoctor extensions that enable you to add diagrams, which you describe using plain text, to your AsciiDoc document. The extensions support BlockDiag (BlockDiag, SeqDiag, ActDiag, NwDiag), Ditaa, GraphViz, Mermaid, PlantUML, Shaape and WaveDrom syntax.
 
-gem install asciidoctor-diagram
+The following instructions cover installation of all of these.
 
-sudo pip install actdiag blockdiag seqdiag nwdiag shaape
+==== Installation
 
-sudo apt install ditaa graphviz
+===== Ubuntu 16.10
 
-sudo npm install -g mermaid --save-dev
-sudo npm install phantomjs
+*Asciidoctor Diagram Module*
+* `gem install asciidoctor-diagram`
 
-Test
+*ActDiag, Sequence, Block, Network Diagrams and Shapes*
+* `sudo pip install actdiag blockdiag seqdiag nwdiag shaape`
+
+*Ditaa, GraphViz*
+* `sudo apt install ditaa graphviz`
+
+*Mermaid*
+* `sudo npm install -g mermaid --save-dev`
+* `sudo ln -s /usr/bin/nodejs /usr/bin/node`
+* `sudo npm install -g phantomjs-prebuilt`
+
+Mermaid by default produces errors which look like this:
+
+
+mulhollandd@gerbra:/media/alexandria/Education/Current/asciidoctor-showcase$ phantomjs -version
+This application failed to start because it could not find or load the Qt platform plugin "xcb".
+
+Available platform plugins are: phantom.
+
+  Reinstalling the application may fix this problem.
+  PhantomJS has crashed. Please read the bug reporting guide at
+  <http://phantomjs.org/bug-reporting.html> and file a bug report.
+  mulhollandd@gerbra:/media/alexandria/Education/Current/asciidoctor-showcase$ phantomjs -v
+  This application failed to start because it could not find or load the Qt platform plugin "xcb".
+
+  Available platform plugins are: phantom.
+
+  Reinstalling the application may fix this problem.
+  PhantomJS has crashed. Please read the bug reporting guide at
+  <http://phantomjs.org/bug-reporting.html> and file a bug report.
+  mulhollandd@gerbra:/media/alexandria/Education/Current/asciidoctor-showcase$ export QT_QPA_PLATFORM=''
+  mulhollandd@gerbra:/media/alexandria/Education/Current/asciidoctor-showcase$ phantomjs -v
+  2.1.1
+
+A reasonable asciidoctor run string is something like this:
+export QT_QPA_PLATFORM='' && /bin/sh -c "asciidoctor --safe-mode unsafe -a lang=ja -b html5 -d book -r asciidoctor-diagram --base-dir /media/alexandria/Education/Current/asciidoctor-showcase /media/alexandria/Education/Current/asciidoctor-showcase/Asciidoctor-Showcase.adoc "
+
+
+
+
+===== Windows 7/10
+
+This is going to be painful.
+Within Transpower all of these are provided in:
+
+===== Simple tests of each of the above extensions
 
 
 [actdiag]
@@ -117,6 +168,18 @@ nwdiag {
 ....
 
 
+[ditaa]
+....
+
+
++-----+                +------+
+| Hope|--------------->|Dreams|
++-----+                +------+
+
+
+....
+
+
 [graphviz]
 ....
 strict graph {
@@ -143,17 +206,33 @@ DiagramBlock <|-- PlantUmlBlock
 
 [mermaid]
 ....
-%% Example with slection of syntaxes
-        gantt
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+....
+
+
+[mermaid]
+....
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+....
+
+[mermaid]
+....
+gantt
         dateFormat  YYYY-MM-DD
         title Adding GANTT diagram functionality to mermaid
-
         section A section
         Completed task            :done,    des1, 2014-01-06,2014-01-08
         Active task               :active,  des2, 2014-01-09, 3d
         Future task               :         des3, after des2, 5d
         Future task2               :         des4, after des3, 5d
-
         section Critical tasks
         Completed task in the critical line :crit, done, 2014-01-06,24h
         Implement parser and jison          :crit, done, after des1, 2d
@@ -161,14 +240,19 @@ DiagramBlock <|-- PlantUmlBlock
         Future task in critical line        :crit, 5d
         Create tests for renderer           :2d
         Add to mermaid                      :1d
+....
 
-        section Documentation
-        Describe gantt syntax               :active, a1, after des1, 3d
-        Add gantt diagram to demo page      :after a1  , 20h
-        Add another diagram to demo page    :doc1, after a1  , 48h
-
-        section Last section
-        Describe gantt syntax               :after doc1, 3d
-        Add gantt diagram to demo page      : 20h
-        Add another diagram to demo page    : 48h
+[mermaid]
+....
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
 ....
