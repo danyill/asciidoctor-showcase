@@ -1,0 +1,6 @@
+{set:cellbgcolor:lightgreen}
+[grid=none, frame=none]
+|===
+| {paramX} >| {paramY}
+|===
+{set:cellbgcolor!}

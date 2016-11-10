@@ -1,10 +1,10 @@
 = Asciidoctor Showcase
 v1.0 Daniel Mulholland <dan.mulholland@gmail.com>
-:imagesoutdir: ./images_out
-:imagesdir: ./images
-:iconsdir: ./icons
-:stylesdir: ./styles
-:scriptsdir: ./js
+//:imagesoutdir: ./images_out
+//:imagesdir: ./images
+//:iconsdir: ./icons
+//:stylesdir: ./styles
+//:scriptsdir: ./js
 
 image::images/Asciidoctor-Showcase-ba06b.png[]
 
@@ -16,7 +16,9 @@ image::images/Asciidoctor-Showcase-ba06b.png[]
 
 == Math
 
-== Extensions
+For math to work...
+
+== Extensins
 
 === Diagrams
 
@@ -202,7 +204,7 @@ DiagramBlock <|-- DitaaBlock
 DiagramBlock <|-- PlantUmlBlock
 ....
 
-
+////
 
 [mermaid]
 ....
@@ -256,3 +258,26 @@ sequenceDiagram
     John->Bob: How about you?
     Bob-->John: Jolly good!
 ....
+
+////
+
+
+=== Use of Macros and Extensions
+
+==== My document
+
+:paramX: lorem
+:paramY: ipsum
+include::snippet.adoc[]
+
+Lorem ipsum dolore.
+
+:paramX: aaaa
+:paramY: bbbb
+include::snippet.adoc[]
+
+Lorem ipsum dolore.
+
+=== Extensions Lab
+
+https://github.com/danyill/asciidoctor-extensions-lab

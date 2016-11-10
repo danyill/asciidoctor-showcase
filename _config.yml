@@ -1,0 +1,16 @@
+asciidoc:
+  processor: asciidoctor
+  ext: asciidoc,adoc,ad
+
+asciidoctor:
+  base_dir: :docdir
+  imagesdir: /images
+  imagesoutdir: /images_out
+  safe: unsafe
+  template_dir: _templates
+  attributes:
+    - icons=font
+    
+gems:
+  - asciidoctor-diagram
+  - jekyll-asciidoc

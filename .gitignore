@@ -1,3 +1,5 @@
 images_out/*
 *.html
 .asciidoctor
+_site/*
+Gemfile.lock
